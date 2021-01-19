@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dump": "ts-node ./bin/dump.ts",
     "build": "tsc -p .",
     "lint": "tslint --format stylish --project .",
-    "lint:fix": "prettier --config prettier-config.json --write \"{src,exec,test}/**/*.ts\"",
-    "clean": "rimraf build/",
+    "lint:fix": "prettier --config prettier-config.json --write \"{src,bin,test}/**/*.ts\"",
+    "clean": "rimraf build/ dumps/",
     "test": "echo 'no tests'"
   },
   "dependencies": {
@@ -18,9 +19,11 @@
     "merkle-patricia-tree": "^2.3.2"
   },
   "devDependencies": {
+    "@types/mkdirp": "^1.0.1",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.21",
     "hardhat": "^2.0.8",
+    "mkdirp": "^1.0.4",
     "mocha": "^8.2.1",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",

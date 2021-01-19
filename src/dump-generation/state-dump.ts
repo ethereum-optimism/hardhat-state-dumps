@@ -1,4 +1,6 @@
-import { HardhatBlockchain } from 'hardhat/src/internal/hardhat-network/provider/HardhatBlockchain'
+const {
+  HardhatBlockchain,
+} = require('hardhat/internal/hardhat-network/provider/HardhatBlockchain')
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { getHreInternals } from './environment'
 import Block from 'ethereumjs-block'
@@ -17,7 +19,7 @@ export const exportHardhatStateDump = async (
     ([_, block]) => {
       return block.toJSON(true)
     }
-  )
+  ).slice(1)
 
   return {
     genesis: (vm as any)._common._chainParams.genesis,

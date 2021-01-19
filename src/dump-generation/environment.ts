@@ -1,8 +1,5 @@
 import hre from 'hardhat'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
-import { HardhatNetworkProvider } from 'hardhat/src/internal/hardhat-network/provider/provider'
-import { HardhatNode } from 'hardhat/src/internal/hardhat-network/provider/node'
-import { HardhatBlockchain } from 'hardhat/src/internal/hardhat-network/provider/HardhatBlockchain'
 import VM from '@nomiclabs/ethereumjs-vm'
 import { Contract } from 'ethers'
 import { getContractFactory } from '@eth-optimism/contracts'
@@ -71,15 +68,15 @@ export const initEnvironment = async (): Promise<DumpEnvironment> => {
 export const getHreInternals = (
   hre: HardhatRuntimeEnvironment
 ): {
-  provider: HardhatNetworkProvider
-  node: HardhatNode
-  blockchain: HardhatBlockchain
+  provider: any
+  node: any
+  blockchain: any
   vm: VM
 } => {
-  const provider: HardhatNetworkProvider = (hre.network.provider as any)
-    ._wrapped._wrapped._wrapped._wrapped
-  const node: HardhatNode = (provider as any)._node
-  const blockchain: HardhatBlockchain = (node as any)._blockchain
+  const provider = (hre.network.provider as any)._wrapped._wrapped._wrapped
+    ._wrapped
+  const node = (provider as any)._node
+  const blockchain = (node as any)._blockchain
   const vm: VM = (node as any)._vm
 
   return {
