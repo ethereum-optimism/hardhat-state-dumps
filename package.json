@@ -1,5 +1,5 @@
 {
-  "name": "service-base",
+  "name": "@eth-optimism/hardhat-state-dumps",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
