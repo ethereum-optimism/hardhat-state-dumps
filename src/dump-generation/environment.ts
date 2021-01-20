@@ -1,4 +1,3 @@
-import hre from 'hardhat'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import VM from '@nomiclabs/ethereumjs-vm'
 import { Contract } from 'ethers'
@@ -11,7 +10,9 @@ export interface DumpEnvironment {
   }
 }
 
-export const initEnvironment = async (): Promise<DumpEnvironment> => {
+export const initEnvironment = async (
+  hre: HardhatRuntimeEnvironment
+): Promise<DumpEnvironment> => {
   await hre.network.provider.request({
     method: 'hardhat_reset',
     params: [],

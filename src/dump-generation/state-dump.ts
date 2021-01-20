@@ -1,6 +1,4 @@
-const {
-  HardhatBlockchain,
-} = require('hardhat/internal/hardhat-network/provider/HardhatBlockchain')
+import { HardhatBlockchain } from 'hardhat/internal/hardhat-network/provider/HardhatBlockchain'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { getHreInternals } from './environment'
 import Block from 'ethereumjs-block'
@@ -15,11 +13,11 @@ export const exportHardhatStateDump = async (
 ): Promise<HardhatStateDump> => {
   const { blockchain, vm } = getHreInternals(hre)
 
-  const blocks = [...(blockchain as any)._data._blocksByNumber].map(
-    ([_, block]) => {
+  const blocks = [...(blockchain as any)._data._blocksByNumber]
+    .map(([_, block]) => {
       return block.toJSON(true)
-    }
-  ).slice(1)
+    })
+    .slice(1)
 
   return {
     genesis: (vm as any)._common._chainParams.genesis,
@@ -46,14 +44,16 @@ export const importHardhatStateDump = async (
   await (node as any)._blockchain.addBlock(genesisBlock)
 
   for (const block of dump.blocks) {
+    const parsedBlock = new Block(block, {
+      common: (node as any)._vm._common,
+    })
+
     const result = await (node as any)._vm.runBlock({
-      block: new Block(block, {
-        common: (node as any)._vm._common,
-      }),
+      block: parsedBlock,
       generate: true,
       skipBlockValidation: true,
     })
 
-    await (node as any)._saveBlockAsSuccessfullyRun(block, result)
+    await (node as any)._saveBlockAsSuccessfullyRun(parsedBlock, result)
   }
 }

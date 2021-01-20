@@ -1,6 +1,8 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import mkdirp from 'mkdirp'
+import hre from 'hardhat'
+
 import { tests, initEnvironment, exportHardhatStateDump } from '../src'
 
 async function main() {
@@ -9,7 +11,7 @@ async function main() {
   for (const task of tests) {
     console.log(`Running task: ${task.name}`)
 
-    const env = await initEnvironment()
+    const env = await initEnvironment(hre)
     await task.test(env)
 
     console.log(`Saving task output...`)
