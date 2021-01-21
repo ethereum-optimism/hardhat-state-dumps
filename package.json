@@ -4,7 +4,8 @@
   "main": "build/index.js",
   "files": [
       "build/**/*.js",
-      "build/**/*json"
+      "build/**/*.json",
+      "dumps/*.json"
   ],
   "license": "MIT",
   "scripts": {
