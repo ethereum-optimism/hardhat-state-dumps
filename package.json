@@ -1,7 +1,11 @@
 {
   "name": "@eth-optimism/hardhat-state-dumps",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "files": [
+      "build/**/*.js",
+      "build/**/*json"
+  ],
   "license": "MIT",
   "scripts": {
     "dump": "ts-node ./bin/dump.ts",
