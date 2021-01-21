@@ -12,7 +12,7 @@
     "dump": "ts-node ./bin/dump.ts",
     "build": "tsc -p .",
     "lint": "tslint --format stylish --project .",
-    "lint:fix": "prettier --config prettier-config.json --write \"{src,bin,test}/**/*.ts\"",
+    "lint:fix": "prettier --config prettier-config.json --write \"hardhat.config.ts\" \"{src,bin,test}/**/*.ts\"",
     "clean": "rimraf build/ dumps/",
     "test": "echo 'no tests'"
   },
