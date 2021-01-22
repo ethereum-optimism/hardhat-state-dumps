@@ -52,6 +52,8 @@ export const importHardhatStateDump = async (
       block: parsedBlock,
       generate: true,
       skipBlockValidation: true,
+      skipBalance: true,
+      skipNonce: true,
     })
 
     await (node as any)._saveBlockAsSuccessfullyRun(parsedBlock, result)

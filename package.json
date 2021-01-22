@@ -1,18 +1,24 @@
 {
   "name": "@eth-optimism/hardhat-state-dumps",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.5",
+  "main": "build/src/index.js",
+  "files": [
+    "build/**/*.js",
+    "build/**/*.json",
+    "dumps/*.json"
+  ],
   "license": "MIT",
   "scripts": {
     "dump": "ts-node ./bin/dump.ts",
     "build": "tsc -p .",
     "lint": "tslint --format stylish --project .",
-    "lint:fix": "prettier --config prettier-config.json --write \"{src,bin,test}/**/*.ts\"",
+    "lint:fix": "prettier --config prettier-config.json --write \"hardhat.config.ts\" \"{src,bin,test}/**/*.ts\"",
     "clean": "rimraf build/ dumps/",
     "test": "echo 'no tests'"
   },
   "dependencies": {
     "@eth-optimism/contracts": "^0.1.4",
+    "@ethersproject/hdnode": "^5.0.8",
     "@nomiclabs/hardhat-ethers": "^2.0.1",
     "ethereumjs-block": "^2.2.2",
     "ethers": "^5.0.26",
