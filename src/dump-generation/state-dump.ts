@@ -58,4 +58,11 @@ export const importHardhatStateDump = async (
 
     await (node as any)._saveBlockAsSuccessfullyRun(parsedBlock, result)
   }
+
+  await new Promise<void>(resolve => {
+    node._stateManager.commit(() => {
+      console.log('Initial state import complete')
+      resolve()
+    })
+  })
 }
